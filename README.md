@@ -1,1 +1,39 @@
+# VETO
 
+## Project setup
+
+``` bash
+npm install
+```
+
+### Compiles and hot-reloads for development
+
+``` bash
+npm run serve
+```
+
+### Compiles and minifies for production
+
+``` bash
+npm run build
+```
+
+### Customize configuration
+
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Deploy for Production
+
+First install missing dependencies:
+
+``` bash
+npm install
+```
+
+Then build the project:
+
+``` bash
+npm run build
+```
+
+A new `dist` Folder will be created. Copy the content of the folder to `/var/www/html` on the server of your dreams^^

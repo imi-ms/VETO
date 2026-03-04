@@ -1,0 +1,3 @@
+VETO_TEXT_text;VETO_ATTR_VALUE_name;VETO_ATTR_START_name;VETO_ATTR_END_name;VETO_ATTR_VALUE_symptom;VETO_ATTR_START_symptom;VETO_ATTR_END_symptom;VETO_ATTR_VALUE_diagnosis;VETO_ATTR_START_diagnosis;VETO_ATTR_END_diagnosis
+After Elly fell down the stairs she has a feeling of strong pain in her leg. She gets diagnosed with a broken leg the next day.;Elly;6;9;strong pain in her leg;53;74;broken leg;103;112
+Peter has acute dizziness. After he saw a doctor, he gets diagnosed with arteriosclerosis.;Peter;0;4;acute dizziness;10;24;arteriosclerosis;73;88

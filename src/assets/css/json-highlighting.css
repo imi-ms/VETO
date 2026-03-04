@@ -1,0 +1,55 @@
+/*
+This CSS-File styles the code sections which are being highlighted with highlight.js
+
+For information regarding highlight.js styling see 
+https://medium.com/@hizacharylee/simplify-syntax-highlighting-with-highlight-js-b65af3bdc509
+*/
+
+@import 'highlight.js/styles/default.css';
+
+.hljs {
+    display: block;
+    padding: 0.5em;
+    background: var(--veto-color-background);
+    color: var(--veto-color-font);
+  }
+  .hljs-comment,
+  .hljs-quote {
+    color: green;
+    font-style: italic;
+  }
+  .hljs-keyword,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .hljs-name {
+    color: #007acc;         /*Boolean Values*/
+  }
+  /*
+  .hljs-attribute,
+  .hljs-meta {
+    color: #f08d49;
+  }
+  .hljs-number,
+  .hljs-regexp,
+  .hljs-link {
+    color: #d36363;
+  }
+    */
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-subst {
+    color: orangered;
+  }
+
+  /*
+  .hljs-title,
+  .hljs-section {
+    color: #4078f2;
+  }
+  .hljs-emphasis {
+    font-style: italic;
+  }
+  .hljs-strong {
+    font-weight: bold;
+  }*/

@@ -1,0 +1,43 @@
+:root {
+    --bs-body-bg: var(--veto-color-background);
+    --bs-body-color: var(--veto-color-font);
+    --bs-border-color: var(--veto-color-border);
+    --bs-secondary-color: var(--veto-color-font-highlight);
+    --bs-tertiary-bg: var(--veto-color-background-highlight);
+}
+
+* {
+    scrollbar-color: var(--veto-color-scrollbar) var(--veto-color-scrollbar-background);
+    scroll-behavior: smooth;
+}
+
+.nav {
+    --bs-nav-tabs-link-hover-border-color: var(--veto-color-border);
+    --bs-nav-tabs-link-active-color: var(--veto-color-font);
+    --bs-nav-link-color: var(--veto-color-main);
+    --bs-nav-link-hover-color: var(--veto-color-main-highlight);
+}
+
+:focus:not(:focus-visible):not(input, select, .multiselect) {
+    box-shadow: 0 0 0 0 !important;
+    outline: none;
+}
+
+:focus {
+    box-shadow: 0 0 0 .1rem var(--veto-color-focus) !important;
+    outline: none;
+}
+
+.veto-background {
+    background-color: var(--veto-color-background) !important;
+}
+.veto-background-highlight {
+    background-color: var(--veto-color-background-highlight);
+}
+.veto-font {
+    color: var(--veto-color-font);
+}
+
+.text-warning {
+    color: var(--veto-color-warning) !important;
+}

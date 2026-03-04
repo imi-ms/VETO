@@ -1,0 +1,108 @@
+.veto-input {
+    position: relative;
+}
+.veto-input > input:not([type='checkbox']), select {
+    width: var(--veto-size-4);
+}
+
+.veto-input > .veto-input-clear {
+    color: var(--veto-color-font-highlight);
+    position: absolute;
+    right: .5em;
+    top: .5em;
+    z-index: 100;
+}
+
+.veto-input > .veto-input-clear:hover {
+    filter: brightness(200%);
+}
+
+.veto-group > .veto-input:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.veto-input-label {
+    margin-bottom: 0.25rem;
+}
+
+.veto-input-error {
+    color: var(--veto-color-error);
+}
+.veto-input-success {
+    color: var(--veto-color-success);
+}
+.veto-input-warning {
+    color: var(--veto-color-warning);
+}
+
+::-webkit-input-placeholder,
+::placeholder {
+    color: var(--veto-color-font-highlight);
+    opacity: 1;
+}
+
+/* Overwrite Multiselect */
+
+.veto-form-multiselect {
+    flex: 1 1 auto;
+}
+
+.veto-form-multiselect:not(:first-child) .multiselect,
+.veto-form-multiselect:not(:first-child) .multiselect__tags {
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+.veto-form-multiselect:not(:last-child) .multiselect,
+.veto-form-multiselect:not(:last-child) .multiselect__tags {
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.veto-form-multiselect .multiselect__tags {
+    height: 42px;
+}
+.veto-form-multiselect .multiselect__single {
+    line-height: inherit;
+}
+
+.multiselect {
+    border-radius: 5px !important;
+    color: var(--veto-color-font);
+}
+.multiselect__content-wrapper,
+.multiselect__single,
+.multiselect__tags {
+    background-color: var(--veto-color-background);
+    border-color: var(--veto-color-border);
+}
+.multiselect__tag {
+    background-color: var(--veto-color-main);
+    color: var(--veto-color-label);
+}
+.multiselect__tag-icon::after {
+    color: var(--veto-color-label);
+}
+.multiselect__tag-icon:hover::after {
+    color: var(--veto-color-label);
+}
+.multiselect__option--selected {
+    background-color: var(--veto-color-inactive);
+    color: white;
+}
+.multiselect__option--highlight {
+    background-color: var(--veto-color-active-highlight);
+}
+.multiselect__option--selected.multiselect__option--highlight {
+    background-color: var(--veto-color-inactive-highlight);
+}
+
+/* Overwrite Bootstrap */
+.form-check-input {
+    margin-top: 0.5rem;
+}
+
+.form-check-input:checked {
+    background-color: var(--veto-color-main);
+    border-color: var(--veto-color-main);
+}

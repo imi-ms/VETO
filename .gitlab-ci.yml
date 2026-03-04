@@ -1,0 +1,77 @@
+stages:
+    - deploy
+    - sync
+
+pages:
+  stage: deploy
+  # The Docker image that will be used to build your app
+  image: node:lts
+    # Functions that should be executed before the build script is run
+  before_script:
+    - npm install
+  script:
+    - npm run build
+    - mv public public-vue
+    - mv dist public
+  artifacts:
+    paths:
+      # The folder that contains the files to be exposed at the Page URL
+      # Must be public for GitLab pages
+      - public
+  rules:
+    # This ensures that only pushes to the default branch will trigger
+    # a pages deploy
+    - if: $CI_COMMIT_REF_NAME == "production"
+  tags:
+    - docker
+
+sync_to_github:
+  stage: sync
+  image: alpine:latest
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "github-sync"'
+      when: on_success
+  variables:
+      GITLAB_BRANCH: "github-sync"
+      GITHUB_BRANCH: "main"
+  before_script:
+    # Setup git
+    - apk add --no-cache git
+    - git config --global user.email "$GIT_USER_EMAIL"
+    - git config --global user.name  "$GIT_USER_NAME"
+
+    # Get the version from package.json
+    - apk add --no-cache nodejs npm
+    - export VERSION=$(node -p "require('./package.json').version")
+    - export GIT_MERGE_MSG="Release v${VERSION}"
+  script:
+    # 1. Add the upstream repository
+    - git remote add github "https://$GITHUB_TOKEN@$GITHUB_REPO"
+
+    # 2. Fetch the latest changes from the upstream repository
+    - git fetch github $GITHUB_BRANCH
+    - git checkout -B $GITHUB_BRANCH github/$GITHUB_BRANCH
+
+    # 3. Check if there is a common ancestor between the public branch and the main branch
+    - |
+      if git merge-base --is-ancestor origin/$GITLAB_BRANCH $GITHUB_BRANCH; then
+        echo "✅ Common ancestor found - normal merge"
+        MERGE_FLAGS="--squash"
+      else
+        echo "⚠️ No common ancestor - merge with --allow-unrelated-histories"
+        MERGE_FLAGS="--squash --allow-unrelated-histories"
+      fi
+
+    # 4. Squash-merge the changes from the public branch into the local main branch
+    # Always use GitLab's changes in case of conflicts
+    - git merge $MERGE_FLAGS origin/$GITLAB_BRANCH -X theirs
+
+    # 5. Commit the changes
+    - git commit -m "$GIT_MERGE_MSG"
+
+    # 6. Push the changes to the upstream repository
+    - git push github $GITHUB_BRANCH --force-with-lease
+
+  after_script:
+    # Clean up to prevent token exposure
+    - git remote remove github

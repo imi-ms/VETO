@@ -1,0 +1,18 @@
+{
+"MetadataFilename":"",
+"TextHeader":"",
+"Features": [
+			    {
+					"Name":"Name",
+					"TextHeader":"",
+					"FromHeader":"",
+					"ToHeader":""
+				},
+				{
+					"Name":"",
+					"TextHeader":"",
+					"FromHeader":"",
+					"ToHeader":""
+				}
+            ]
+}

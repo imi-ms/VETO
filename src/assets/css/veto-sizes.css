@@ -1,0 +1,37 @@
+:root {
+    --veto-size-gap: .25rem;
+    --veto-size-main: 42px;
+
+    --veto-size-4: calc(var(--veto-size-main) * 4 + var(--veto-size-gap) * 6);
+}
+
+.veto-size-fit {
+    width: fit-content !important;
+    padding-left: .75rem !important;
+    padding-right: .75rem !important;
+}
+
+.veto-size-05 {
+    width: calc(var(--veto-size-main) * 0.5) !important;
+}
+.veto-size-1 {
+    width: var(--veto-size-main) !important;
+}
+.veto-size-15 {
+    width: calc(var(--veto-size-main) * 1.5 + var(--veto-size-gap)) !important;
+}
+.veto-size-2 {
+    width: calc(var(--veto-size-main) * 2 + var(--veto-size-gap) * 2) !important;
+}
+.veto-size-25 {
+    width: calc(var(--veto-size-main) * 2.5 + var(--veto-size-gap) * 3) !important;
+}
+.veto-size-3 {
+    width: calc(var(--veto-size-main) * 3 + var(--veto-size-gap) * 4) !important;
+}
+.veto-size-35 {
+    width: calc(var(--veto-size-main) * 3.5 + var(--veto-size-gap) * 5) !important;
+}
+.veto-size-4 {
+    width: var(--veto-size-4) !important;
+}

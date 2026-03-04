@@ -1,0 +1,59 @@
+.veto-action-button > button {
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 4px;
+    color: var(--veto-color-label);
+    height: 38px;
+    padding: 0;
+    transition: background-color 0.2s ease;
+    width: var(--veto-size-main);
+}
+
+.veto-action-button > button:disabled {
+    background-color: var(--veto-color-disabled) !important;
+}
+
+.veto-action-button > button.veto-active {
+    background-color: var(--veto-color-active);
+}
+.veto-action-button > button.veto-active:hover:not(:disabled) {
+    background-color: var(--veto-color-active-highlight);
+}
+
+.veto-action-button > button.veto-inactive {
+    background-color: var(--veto-color-inactive);
+}
+.veto-action-button > button.veto-inactive:hover:not(:disabled) {
+    background-color: var(--veto-color-inactive-highlight);
+}
+
+.veto-action-button > button.veto-neutral {
+    background-color: var(--veto-color-main);
+}
+.veto-action-button > button.veto-neutral:hover:not(:disabled) {
+    background-color: var(--veto-color-main-highlight);
+}
+
+.veto-action-button-anno {
+    position: relative;
+}
+
+.veto-action-button-anno > span {
+    background: var(--veto-color-label);
+    border: 1px solid;
+    border-radius: 1rem;
+    bottom: .1rem;
+    color: var(--veto-color-font-highlight);
+    height: 1.1rem;
+    right: .3rem;
+    position: absolute;
+    width: 1.1rem;
+    z-index: 100;
+}
+
+.veto-action-button-anno > span > span {
+    display: block;
+    font-size: 12px;
+    margin: auto;
+    width: fit-content;
+}

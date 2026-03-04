@@ -1,0 +1,62 @@
+.veto-nav-item a {
+    text-decoration: none;
+    color: var(--veto-color-font);
+    font-size: 2em;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    opacity: 0.6;
+}
+
+.veto-nav-item {
+    padding-left: 2rem;
+}
+
+.veto-nav-item a:focus {
+    box-shadow: 0 0 0 .1rem var(--veto-color-focus);
+    outline: none;
+}
+
+.veto-nav-item:first-child {
+    padding-left: 0;
+}
+
+.veto-container-row {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.veto-container-row-r {
+    display: flex;
+    margin-left: auto;
+}
+
+.veto-container-item {
+    display: flex;
+    margin: var(--veto-size-gap);
+}
+
+.veto-group {
+    margin-bottom: 1em;
+}
+
+.veto-group-head {
+    font-size: 22px;
+    overflow: hidden;
+    text-align: center;
+}
+.veto-group-head::before, .veto-group-head::after {
+    background-color: #000;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    vertical-align: middle;
+    width: 50%;
+}
+.veto-group-head::before {
+    margin-left: -50%;
+    margin-right: 0.2em;
+}
+.veto-group-head::after {
+    margin-right: -50%;
+    margin-left: 0.2em;
+}
