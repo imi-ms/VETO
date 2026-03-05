@@ -3,75 +3,79 @@ stages:
     - sync
 
 pages:
-  stage: deploy
-  # The Docker image that will be used to build your app
-  image: node:lts
+    stage: deploy
+    # The Docker image that will be used to build your app
+    image: node:lts
     # Functions that should be executed before the build script is run
-  before_script:
-    - npm install
-  script:
-    - npm run build
-    - mv public public-vue
-    - mv dist public
-  artifacts:
-    paths:
-      # The folder that contains the files to be exposed at the Page URL
-      # Must be public for GitLab pages
-      - public
-  rules:
-    # This ensures that only pushes to the default branch will trigger
-    # a pages deploy
-    - if: $CI_COMMIT_REF_NAME == "production"
-  tags:
-    - docker
+    before_script:
+        - npm install
+    script:
+        - npm run build
+        - mv public public-vue
+        - mv dist public
+    artifacts:
+        paths:
+            # The folder that contains the files to be exposed at the Page URL
+            # Must be public for GitLab pages
+            - public
+    rules:
+        # This ensures that only pushes to the default branch will trigger a pages deployment
+        -   if: $CI_COMMIT_REF_NAME == "production"
+    tags:
+        - docker
 
 sync_to_github:
-  stage: sync
-  image: alpine:latest
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "github-sync"'
-      when: on_success
-  variables:
-      GITLAB_BRANCH: "github-sync"
-      GITHUB_BRANCH: "main"
-  before_script:
-    # Setup git
-    - apk add --no-cache git
-    - git config --global user.email "$GIT_USER_EMAIL"
-    - git config --global user.name  "$GIT_USER_NAME"
+    stage: sync
+    image: alpine:latest
+    rules:
+        -   if: '$CI_COMMIT_TAG != null'
+        -   if: '$CI_COMMIT_BRANCH == "github-sync"'
+            when: on_success
+    variables:
+        GITLAB_BRANCH: "github-sync"
+        GITHUB_BRANCH: "main"
 
-    # Get the version from package.json
-    - apk add --no-cache nodejs npm
-    - export VERSION=$(node -p "require('./package.json').version")
-    - export GIT_MERGE_MSG="Release v${VERSION}"
-  script:
-    # 1. Add the upstream repository
-    - git remote add github "https://$GITHUB_TOKEN@$GITHUB_REPO"
+        GIT_STRATEGY: fetch
+        GIT_DEPTH: "0"
+    before_script:
+        # Setup git
+        - apk add --no-cache git
+        - git config --global user.email "$GIT_USER_EMAIL"
+        - git config --global user.name  "$GIT_USER_NAME"
 
-    # 2. Fetch the latest changes from the upstream repository
-    - git fetch github $GITHUB_BRANCH
-    - git checkout -B $GITHUB_BRANCH github/$GITHUB_BRANCH
+        # Get the version from package.json
+        - apk add --no-cache nodejs npm
+        - export VERSION=$(node -p "require('./package.json').version")
+        - export GIT_MERGE_MSG="Release v${VERSION}"
 
-    # 3. Check if there is a common ancestor between the public branch and the main branch
-    - |
-      if git merge-base --is-ancestor origin/$GITLAB_BRANCH $GITHUB_BRANCH; then
-        echo "✅ Common ancestor found - normal merge"
-        MERGE_FLAGS="--squash"
-      else
-        echo "⚠️ No common ancestor - merge with --allow-unrelated-histories"
-        MERGE_FLAGS="--squash --allow-unrelated-histories"
-      fi
+        # Ensure both sides are available locally
+        - git fetch origin "$GITLAB_BRANCH"
 
-    # 4. Squash-merge the changes from the public branch into the local main branch
-    # Always use GitLab's changes in case of conflicts
-    - git merge $MERGE_FLAGS origin/$GITLAB_BRANCH -X theirs
+        # Add GitHub remote and fetch the target branch
+        - git remote add github "https://$GITHUB_TOKEN@$GITHUB_REPO"
+        - git fetch github "$GITHUB_BRANCH"
+    script:
+        # Start from the GitHub branch tip
+        - git checkout -B "$GITHUB_BRANCH" "github/$GITHUB_BRANCH"
 
-    # 5. Commit the changes
-    - git commit -m "$GIT_MERGE_MSG"
+        # Replace the entire working tree with the GitLab branch snapshot
+        # (this reliably propagates deletions too)
+        - git rm -r --ignore-unmatch .
+        - git checkout "origin/$GITLAB_BRANCH" -- .
+        - git add -A
 
-    # 6. Push the changes to the upstream repository
-    - git push github $GITHUB_BRANCH --force-with-lease
+        # Commit only if something actually changed
+        - |
+            if git diff --cached --quiet; then
+              echo "No changes to sync."
+              exit 0
+            fi
 
-  after_script:
-    # Clean up to prevent token exposure
-    - git remote remove github
+        - git commit -m "$GIT_MERGE_MSG"
+
+        # Push the new snapshot commit
+        - git push github "$GITHUB_BRANCH" --force-with-lease
+
+    after_script:
+        # Clean up to prevent token exposure
+        - git remote remove github
