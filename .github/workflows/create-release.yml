@@ -17,6 +17,8 @@ concurrency:
 jobs:
     build:
         runs-on: ubuntu-latest
+        outputs:
+            version: ${{ steps.pkg.outputs.version }}
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v6
@@ -69,6 +71,8 @@ jobs:
     release:
         runs-on: ubuntu-latest
         needs: build
+        env:
+            VERSION: ${{ needs.build.outputs.version }}
         steps:
             -   name: Download dist artifact
                 uses: actions/download-artifact@v8
@@ -81,13 +85,9 @@ jobs:
                 run: |
                     cd dist
                     zip -r ../VETO-v${VERSION}.zip .
-                env:
-                    VERSION: ${{ steps.pkg.outputs.version }}
 
             -   name: Create Release
                 uses: softprops/action-gh-release@v2
-                env:
-                    VERSION: ${{ steps.pkg.outputs.version }}
                 with:
                     tag_name: v${{ env.VERSION }}
                     name: VETO v${{ env.VERSION }}
