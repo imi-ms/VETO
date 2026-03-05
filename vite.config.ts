@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  base: '/VETO/',
+  base: process.env.VITE_BASE ?? './',
   build: {
     rollupOptions: {
       output: {
