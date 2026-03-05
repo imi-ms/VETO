@@ -76,10 +76,20 @@ jobs:
                     name: dist
                     path: dist
 
+            -   name: Package dist as zip
+                shell: bash
+                run: |
+                    cd dist
+                    zip -r ../VETO-v${VERSION}.zip .
+                env:
+                    VERSION: ${{ steps.pkg.outputs.version }}
+
             -   name: Create Release
                 uses: softprops/action-gh-release@v2
+                env:
+                    VERSION: ${{ steps.pkg.outputs.version }}
                 with:
-                    tag_name: v${{ needs.build.outputs.version }}
-                    name: VETO v${{ needs.build.outputs.version }}
-                    files: dist/**/*
+                    tag_name: v${{ env.VERSION }}
+                    name: VETO v${{ env.VERSION }}
+                    files: VETO-v${{ env.VERSION }}.zip
                     generate_release_notes: true
