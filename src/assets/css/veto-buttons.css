@@ -1,0 +1,93 @@
+.veto-action-button > button {
+    border: 1px solid transparent;
+    border-radius: var(--veto-radius-sm);
+    box-shadow: var(--veto-shadow-sm);
+    color: var(--veto-color-label);
+    height: var(--veto-size-main);
+    padding: 0;
+    transition: transform var(--veto-transition-fast), background-color var(--veto-transition-fast), box-shadow var(--veto-transition-fast);
+    width: var(--veto-size-main);
+}
+
+.veto-action-button > button:hover:not(:disabled) {
+    box-shadow: var(--veto-shadow-md);
+}
+
+.veto-action-button > button:disabled {
+    background-color: var(--veto-color-disabled) !important;
+    box-shadow: none;
+    opacity: 0.68;
+}
+
+.veto-action-button > button.veto-active {
+    background-color: var(--veto-color-active);
+}
+.veto-action-button > button.veto-active:hover:not(:disabled) {
+    background-color: var(--veto-color-active-highlight);
+}
+
+.veto-action-button > button.veto-inactive {
+    background-color: var(--veto-color-inactive);
+}
+.veto-action-button > button.veto-inactive:hover:not(:disabled) {
+    background-color: var(--veto-color-inactive-highlight);
+}
+
+.veto-action-button > button.veto-neutral {
+    background-color: var(--veto-color-main);
+}
+.veto-action-button > button.veto-neutral:hover:not(:disabled) {
+    background-color: var(--veto-color-main-highlight);
+}
+
+.veto-action-button-anno {
+    position: relative;
+}
+
+.veto-action-button-anno > span {
+    background: var(--veto-color-label);
+    border: 1px solid var(--veto-color-border);
+    border-radius: 1rem;
+    bottom: .1rem;
+    color: var(--veto-color-font-highlight);
+    height: 1.1rem;
+    right: .3rem;
+    position: absolute;
+    width: 1.1rem;
+    z-index: 100;
+}
+
+.veto-action-button-anno > span > span {
+    display: block;
+    font-size: 12px;
+    margin: auto;
+    width: fit-content;
+}
+
+.veto-nav-button {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--veto-radius-sm);
+    box-shadow: none;
+    color: var(--veto-color-font);
+    display: inline-flex;
+    font-size: 0.9rem;
+    font-weight: 600;
+    gap: 0.4rem;
+    height: 2.05rem;
+    letter-spacing: 0.01em;
+    opacity: 0.98;
+    padding: 0 0.68rem;
+    transition: background-color var(--veto-transition-fast), color var(--veto-transition-fast), opacity var(--veto-transition-fast), transform var(--veto-transition-fast), box-shadow var(--veto-transition-fast);
+}
+
+.veto-nav-button:hover,
+.veto-nav-button:focus-visible {
+    border-color: transparent;
+    background: var(--veto-color-canvas);
+    color: var(--veto-color-font);
+    opacity: 0.94;
+    box-shadow: none;
+    transform: none;
+}

@@ -1,0 +1,96 @@
+:root {
+    --bs-body-bg: var(--veto-color-background);
+    --bs-body-color: var(--veto-color-font);
+    --bs-border-color: var(--veto-color-border);
+    --bs-secondary-color: var(--veto-color-font-highlight);
+    --bs-tertiary-bg: var(--veto-color-background-highlight);
+    --bs-primary: var(--veto-color-main);
+    --bs-primary-rgb: 10, 98, 88;
+    --bs-border-radius: var(--veto-radius-sm);
+    --bs-border-radius-sm: var(--veto-radius-xs);
+    --bs-border-radius-lg: var(--veto-radius-md);
+    --veto-color-hover: color-mix(in srgb, var(--veto-color-main) 8%, var(--veto-color-background));
+    --veto-color-surface: color-mix(in srgb, var(--veto-color-background-highlight) 70%, var(--veto-color-background));
+    --veto-color-surface-strong: color-mix(in srgb, var(--veto-color-main) 6%, var(--veto-color-background-highlight));
+    --veto-color-canvas: color-mix(in srgb, var(--veto-color-background) 82%, #d7d0c6 18%);
+    --veto-color-pane-table: color-mix(in srgb, var(--veto-color-background-highlight) 78%, #d7d0c6 22%);
+    --veto-color-pane-view: var(--veto-color-pane-table);
+    --veto-color-input-group-label: color-mix(in srgb, var(--veto-color-background-highlight) 76%, var(--veto-color-border) 24%);
+    --veto-color-input-group-control: var(--veto-color-background);
+}
+
+* {
+    scrollbar-color: var(--veto-color-scrollbar) var(--veto-color-scrollbar-background);
+    scroll-behavior: smooth;
+}
+
+.nav {
+    --bs-nav-tabs-link-hover-border-color: var(--veto-color-border);
+    --bs-nav-tabs-link-active-color: var(--veto-color-font);
+    --bs-nav-link-color: var(--veto-color-main);
+    --bs-nav-link-hover-color: var(--veto-color-main-highlight);
+}
+
+:focus:not(:focus-visible):not(input, select, .multiselect) {
+    box-shadow: 0 0 0 0 !important;
+    outline: none;
+}
+
+:focus {
+    box-shadow: 0 0 0 .1rem var(--veto-color-focus) !important;
+    outline: none;
+}
+
+.form-control,
+.form-select,
+.input-group-text,
+.multiselect__tags,
+.multiselect__content-wrapper {
+    background-color: var(--veto-color-surface);
+    border-color: var(--veto-color-border);
+    color: var(--veto-color-font);
+}
+
+.input-group .input-group-text {
+    background-color: var(--veto-color-input-group-label);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--veto-color-main);
+}
+
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--veto-color-font);
+}
+
+.modal-content {
+    background: var(--veto-color-background);
+    border: 1px solid var(--veto-color-border);
+    border-radius: var(--veto-radius-md);
+    box-shadow: var(--veto-shadow-md);
+}
+
+.modal-header,
+.modal-footer {
+    background: var(--veto-color-surface);
+}
+
+.navbar {
+    backdrop-filter: saturate(120%) blur(10px);
+}
+
+.veto-background {
+    background-color: var(--veto-color-background) !important;
+}
+.veto-background-highlight {
+    background-color: var(--veto-color-surface);
+}
+.veto-font {
+    color: var(--veto-color-font);
+}
+
+.text-warning {
+    color: var(--veto-color-warning) !important;
+}

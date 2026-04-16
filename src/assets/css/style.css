@@ -1,0 +1,84 @@
+:root {
+    --veto-font-sans: "Nunito Sans", "Avenir Next", "IBM Plex Sans", "Segoe UI Variable", "Segoe UI", sans-serif;
+    --veto-radius-xs: 6px;
+    --veto-radius-sm: 10px;
+    --veto-radius-md: 14px;
+    --veto-radius-lg: 18px;
+    --veto-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.14);
+    --veto-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.12);
+    --veto-transition-fast: 150ms ease;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+}
+
+body {
+    background: var(--veto-color-canvas);
+    color: var(--veto-color-font);
+    font-family: var(--veto-font-sans);
+    font-size: 15px;
+    line-height: 1.45;
+    margin: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+label {
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 650;
+    letter-spacing: 0.01em;
+}
+
+a {
+    color: var(--veto-color-main);
+    transition: color var(--veto-transition-fast), opacity var(--veto-transition-fast);
+}
+
+a:hover {
+    color: var(--veto-color-main-highlight);
+}
+
+::selection {
+    background: var(--veto-color-highlight);
+    color: var(--veto-color-font);
+}
+
+@keyframes blink {
+    0%{filter: brightness(1)}
+    55%{filter: brightness(0.2)}
+    100%{filter: brightness(1)}
+}
+
+@keyframes blink-highlighted {
+    0%{filter: brightness(1)}
+    25%{filter: brightness(0.2)}
+    50%{filter: brightness(1)}
+    75%{filter: brightness(0.2)}
+    100%{filter: brightness(0.6)}
+}
+
+.blinking {
+    animation: blink .7s linear;
+    animation-iteration-count: 2;
+}
+
+.blinking-highlighted {
+    animation: blink-highlighted 1.4s linear;
+    animation-iteration-count: 1;
+}
+
+.highlighted {
+    filter: brightness(0.6)
+}
