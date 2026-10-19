@@ -1,23 +1,51 @@
 <template>
-  <Popup ref="aboutPopup" id="AboutPopupModal" header="About" width="30%" :hide-close-button="true">
+  <Popup ref="aboutPopup" id="AboutPopupModal" header="Imprint" width="30%" :hide-close-button="true">
     <template #popup-body>
-      Universität Münster<br>
-      Schlossplatz 2, 48149 Münster<br>
-      Telephone: +49 (251) 83-0<br>
-      Fax: +49 (251) 83-3 20 90<br>
-      E-mail: <a href="mailto:verwaltung@uni-muenster.de">verwaltung@uni-muenster.de</a><br>
-      <br>
-      The University of Münster is a statutory body and an institution of the Land of North Rhine-Westphalia. It is represented by the Rector, Professor Dr. Johannes Wessels.<br>
-      <br>
-      Turnover tax identification number: DE 126118759<br>
-      <br>
-      Edited in accordance with §5 TMG by:<br>
-      Prof. Dr. Dominik Heider<br>
-      Institute of Medical Informatics<br>
-      Albert-Schweizer-Campus 1, Building A11<br>
-      48149 Münster, Germany<br>
-      Telephone: +49 (251) 83-55262<br>
-      E-mail: <a href="mailto:imi@uni-muenster.de">imi@uni-muenster.de</a>
+
+      <p>
+        University of Münster<br/>
+        Faculty of Medicine<br/>
+        Albert-Schweitzer-Campus 1, Bldg. D3<br/>
+        Tel.: +49 251 83 52263<br/>
+        Fax: +49 251 83 55004<br/>
+        E-Mail: <a href="mailto:dekanmed@ukmuenster.de">dekanmed@ukmuenster.de</a>
+      </p>
+
+      <p>
+        The Medical Faculty is an institution of the University of Münster.
+        The University of Münster is a public corporation and, at the same time, an institution of the state of North
+        Rhine-Westphalia.
+        It is represented by its Rector, Prof. Dr. Susanne Menzel-Riedl.
+      </p>
+
+      <p>
+        <b>Responsible supervisory authority:</b><br/>
+        Ministerium für Kultur und Wissenschaft des Landes Nordrhein-Westfalen<br/>
+        Völklinger Straße 49<br/>
+        40221 Düsseldorf<br/>
+      </p>
+
+      <p><b>VAT identification number: DE 126118759</b></p>
+
+      <p>
+        Editorially responsible according to § 55 Abs. 2 (Interstate Broadcasting Agreement, RStV):<br/>
+        Dean of the Faculty of Medicine<br/>
+        University of Münster<br/>
+        Prof. Dr. Frank Ulrich Müller<br/>
+        Tel.: +49 251 83 52263<br/>
+        Fax: +49 251 83 55004<br/>
+        E-Mail: <a href="mailto:dekanmed@ukmuenster.de">dekanmed@ukmuenster.de</a><br/>
+        Albert-Schweitzer-Campus 1, Geb. D3<br/>
+        48149 Münster
+      </p>
+
+      <p>
+        This legal notice applies to the information provided on the central website managed by the administration and
+        Rectorate of the University of Münster which is accessible via the URL
+        <a href="https://www.uni-muenster.de">www.uni-muenster.de</a> and is designated by "© University of Münster".
+        The editorial responsibility for all the other pages on this Internet server lies with the offices or persons
+        who have created and published the respective pages.
+      </p>
     </template>
   </Popup>
   <footer class="veto-background-highlight border-top border-1 veto-footer">
